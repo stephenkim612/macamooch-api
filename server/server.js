@@ -4,7 +4,7 @@ const router = require('./route.js')
 const bodyParser = require('body-parser')
 
 
-const port = 3000
+const port = 8080
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
