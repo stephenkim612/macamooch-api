@@ -21,6 +21,4 @@ app.use('/', router)
 app.get('/', (req, res) => res.send({hello: 'Hello World!'}))
 
 
-
-
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
