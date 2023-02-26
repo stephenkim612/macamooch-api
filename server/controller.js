@@ -30,6 +30,43 @@ controller.createAccount = (req, res, next) => {
       return next(err)
     })
 }
+controller.addEvent = (req, res, next) => {
+  const info = [req.body.name, req.body.max_capacity, req.body.date, req.body.time, req.body.city]
+  const query = 'INSERT INTO events (name, max_capacity, date, time, city) VALUES ($1, $2, $3, $4, $5);'
+  db.query(query, info)
+    .then(() => {
+      return next()
+    })
+    .catch((err) => {
+      return next(err)
+    })
+}
+
+controller.deleteEvent = (req, res, next) => {
+  const name = [req.body.name]
+  const query = 'DELETE FROM events WHERE name=$1;'
+  db.query(query, name)
+    .then(() => {
+      return next()
+    })
+    .catch((err) => {
+      return next(err)
+    })
+}
+
+controller.getAllEvents = (req, res, next) => {
+  const query = 'SELECT * FROM events;'
+  db.query(query)
+    .then((response) =>{
+      res.locals.events = response.rows
+    })
+    .then(() => {
+      return next()
+    })
+    .catch((err) => {
+      return next(err)
+    })
+}
 
 module.exports = controller;
 
